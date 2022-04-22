@@ -32,7 +32,6 @@ const db = mongoose.connection
 db.on('error', err => console.log(err.message + ' is Mongod not running?'))
 db.on('disconnected', () => console.log('mongo disconnected', mongoURI))
 
-
 app.use(morgan('dev'))
 
 
