@@ -6,10 +6,10 @@ const handler = require('../middleware/serverError')
 
 
 
-router.get('/user/:id', async(req, res)=>{
+router.get('/user', async(req, res)=>{
     try{
-        const doc = await Docs.find({user :req.params.id})
-        return req.sed({
+        const doc = await Docs.find({user :req.user._id})
+        return res.send({
             success: true,
             data: doc,
         })
@@ -22,7 +22,7 @@ router.get('/user/:id', async(req, res)=>{
 router.get('/doc/:id', async(req, res)=>{
     try{
         const doc = await Docs.findById(req.params.id)
-        return req.send({
+        return res.send({
             success: true,
             data: doc,
         })
@@ -49,7 +49,7 @@ router.post('/', async(req, res)=>{
 router.put('/:id', async(req, res)=>{
     try{
         const doc = await DocData.findByIdAndUpdate(req.params.id, req.body, {new:true})
-        return req.send({
+        return res.send({
             success: true,
             data: doc,
         })

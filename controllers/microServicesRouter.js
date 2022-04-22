@@ -5,9 +5,9 @@ const Docs = require('../models/Docs')
 const handler = require('../middleware/serverError')
 const jwt = require('jsonwebtoken')
 
-router.delete('/:id', async(req, res)=>{
+router.delete('/', async(req, res)=>{
     try{
-        const user = await Docs.find({user :req.params.id})
+        const user = await Docs.find({user :req.user._id})
         const foudn  = allDocuemnts(user)
         await DocData.deleteMany({document: {$in: foudn}})
         await Docs.deleteMany({user: req.body.user})
