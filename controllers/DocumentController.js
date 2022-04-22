@@ -9,7 +9,7 @@ const handler = require('../middleware/serverError')
 router.get('/user/:id', async(req, res)=>{
     try{
         const doc = await Docs.find({user :req.params.id})
-        return req.set({
+        return req.sed({
             success: true,
             data: doc,
         })
@@ -22,7 +22,7 @@ router.get('/user/:id', async(req, res)=>{
 router.get('/doc/:id', async(req, res)=>{
     try{
         const doc = await DocData.findById(req.params.id)
-        return req.set({
+        return req.send({
             success: true,
             data: doc,
         })
@@ -33,8 +33,10 @@ router.get('/doc/:id', async(req, res)=>{
 
 router.post('/', async(req, res)=>{
     try{
-        const doc = await DocData.create({data: {}})
-        return req.set({
+        const data = await DocData.create({data: {}})
+        req.body.data = data._id
+        const doc = await Docs.create(req.body)
+        return res.send({
             success: true,
             data: doc,
         })
@@ -46,7 +48,7 @@ router.post('/', async(req, res)=>{
 router.put('/:id', async(req, res)=>{
     try{
         const doc = await DocData.findByIdAndUpdate(req.params.id, req.body, {new:true})
-        return req.set({
+        return req.send({
             success: true,
             data: doc,
         })
@@ -60,7 +62,7 @@ router.delete('/:id', async(req, res)=>{
     try{
         await DocData.findByIdAndDelete(req.params.id)
         await DocData.findByIdAndDelete(req.body.data)
-        return req.set({
+        return res.send({
             success: true,
             data: 'Deleted From DBS',
         })

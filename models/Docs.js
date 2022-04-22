@@ -4,14 +4,16 @@ const Schema = mongoose.Schema;
 const docsSchema = new Schema({
   title: {
     type: String,
-    unique: true,
+    required:true
     },
   data: {
     type: Schema.Types.ObjectId,
     ref: 'User',
+    required: true
     },
   type: {
-    type: String
+    type: String,
+    sparse:true
   },
   allowedUsers:[
     {

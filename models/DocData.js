@@ -5,11 +5,6 @@ const docDataSchema = new Schema({
     data: {
       type: Object,
     },
-    doc: {
-        type: Schema.Types.ObjectId,
-        ref: 'Docs',
-        sparse:true
-    }
 },{timestamps: true})
 
 

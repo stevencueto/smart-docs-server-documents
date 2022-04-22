@@ -39,8 +39,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 //require router
-const authRouter = require('./controllers/docs')
-app.use('/auth', authRouter)
+const docsRouter = require('./controllers/DocumentController')
+app.use('/', docsRouter)
 
 
 
