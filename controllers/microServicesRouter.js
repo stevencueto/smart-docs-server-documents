@@ -9,22 +9,23 @@ const transId = (id) =>{
 router.delete('/', async(req, res)=>{
     const id = transId(req.user._id)
     try{
-        const user = await Docs.find({user :id})
+        const user = await Docs.find({user : {$in: [id]}})
         const find  = allDocuemnts(user)
-        await DocData.deleteMany({document: {$in: find}})
         await Docs.deleteMany({user: req.body.user})
+        await DocData.deleteMany({document: {$in: find}})
         return res.send({
             success: true,
-            data: ['Deleted All Items From DBS', user, find],
+            data: ['Deleted All Items From DBS', find],
         })
     }catch(err){
         console.log('axios')
-        res.send({success: false, message: "axios"}) 
+        res.send({success: false, message: err.message}) 
     }
 })
 
-const allDocuemnts = (user) =>{
-    const documents = user.map((one)=> transId(one._id))
+function allDocuemnts (data){
+    const documents = data.map((one)=> one._id)
+    console.log(documents)
     return documents
 }
 

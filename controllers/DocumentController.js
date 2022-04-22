@@ -62,8 +62,8 @@ router.put('/:id', async(req, res)=>{
 
 router.delete('/:id', async(req, res)=>{
     try{
-        await DocData.findByIdAndDelete(req.params.id)
-        await Docs.findByIdAndDelete(req.body.data)
+        await Docs.findByIdAndDelete(req.params.id)
+        await DocData.findByIdAndDelete(req.body.data)
         return res.send({
             success: true,
             data: 'Deleted From DBS',
