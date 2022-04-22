@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const docsSchema = new Schema({
   title: {
     type: String,
-    required:true
+    required:true,
+    unique: false
     },
   data: {
     type: Schema.Types.ObjectId,
