@@ -8,7 +8,7 @@ const docsSchema = new Schema({
     },
   data: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'DocData',
     required: true
     },
   type: {

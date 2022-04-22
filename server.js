@@ -40,7 +40,9 @@ app.use(express.json())
 
 //require router
 const docsRouter = require('./controllers/DocumentController')
+const microservicesRouter = require('./controllers/microServicesRouter')
 app.use('/', docsRouter)
+app.use('/micro', microservicesRouter)
 
 
 
