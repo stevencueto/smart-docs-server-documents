@@ -41,6 +41,8 @@ app.use(express.json())
 //require router
 const docsRouter = require('./controllers/DocumentController')
 const microservicesRouter = require('./controllers/microServicesRouter')
+const secureServer = require('./middleware/jwt')
+app.use('/', secureServer)
 app.use('/', docsRouter)
 app.use('/micro', microservicesRouter)
 

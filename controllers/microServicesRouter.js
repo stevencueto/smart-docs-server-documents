@@ -3,7 +3,7 @@ const router = express.Router()
 const DocData = require('../models/DocData')
 const Docs = require('../models/Docs')
 const handler = require('../middleware/serverError')
-
+const jwt = require('jsonwebtoken')
 
 router.delete('/:id', async(req, res)=>{
     try{
