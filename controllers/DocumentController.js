@@ -37,6 +37,7 @@ router.post('/', async(req, res)=>{
         req.body.data = data._id
         req.body.user = req.user._id
         const doc = await Docs.create(req.body)
+        console.log(doc)
         await DocData.findByIdAndUpdate(data.id, {document: doc._id})
         return res.send({
             success: true,
