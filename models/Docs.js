@@ -7,6 +7,11 @@ const docsSchema = new Schema({
     required:true,
     unique: false
     },
+    user : {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
+      },
   data: {
     type: Schema.Types.ObjectId,
     ref: 'DocData',
