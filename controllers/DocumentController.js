@@ -36,6 +36,7 @@ router.post('/', async(req, res)=>{
         const data = await DocData.create({data: {}})
         req.body.data = data._id
         req.body.user = req.user._id
+        console.log(req.body)
         const doc = await Docs.create(req.body)
         console.log(doc)
         await DocData.findByIdAndUpdate(data.id, {document: doc._id})
