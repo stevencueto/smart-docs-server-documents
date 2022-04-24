@@ -48,8 +48,9 @@ router.post('/', async(req, res)=>{
 })
 
 router.put('/:id', async(req, res)=>{
+    id = req.params.id
     try{
-        const doc = await DocData.findByIdAndUpdate(req.params.id, req.body, {new:true})
+        const doc = await Docs.findByIdAndUpdate(id, req.body)
         return res.send({
             success: true,
             data: doc,
