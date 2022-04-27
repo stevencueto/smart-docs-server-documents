@@ -2,10 +2,10 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const docsSchema = new Schema({
-  title: {
-    type: String,
-    required:true,
-    unique: false
+    title: {
+      type: String,
+      required:true,
+      unique: false
     },
     user : {
       type: Schema.Types.ObjectId,
@@ -28,6 +28,10 @@ const docsSchema = new Schema({
         sparse:true
       }
     ],
+    lastOpen:{
+      type: String,
+      sparse:true
+    },
   public: {
     type: Boolean,
     default: false

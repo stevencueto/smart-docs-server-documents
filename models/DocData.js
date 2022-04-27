@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const docDataSchema = new Schema({
     data: {
-      type: Object,
+      type: String,
+      default: "type something"
     },
     document: {
       type: Schema.Types.ObjectId,

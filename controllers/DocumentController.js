@@ -33,7 +33,8 @@ router.get('/doc/:id', async(req, res)=>{
 
 router.post('/', async(req, res)=>{
     try{
-        const data = await DocData.create({data: {}})
+        const data = await DocData.create({data: "..."})
+        console.log(data)
         req.body.data = data._id
         req.body.user = req.user._id
         console.log(req.body)
@@ -51,6 +52,18 @@ router.post('/', async(req, res)=>{
 
 router.put('/:id', async(req, res)=>{
     id = req.params.id
+    try{
+        const doc = await Docs.findByIdAndUpdate(id, req.body)
+        return res.send({
+            success: true,
+            data: doc,
+        })
+    }catch(err){
+        handler(err, res, err.message) 
+    }
+})
+
+router.put('/open/:id', async(req, res)=>{
     try{
         const doc = await Docs.findByIdAndUpdate(id, req.body)
         return res.send({
