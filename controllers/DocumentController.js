@@ -18,6 +18,18 @@ router.get('/user', async(req, res)=>{
     }
 })
 
+router.get('/data/:id', async(req, res)=>{
+    try{
+        const doc = await Docs.findById({data: req.params.id})
+        return res.send({
+            success: true,
+            data: doc,
+        })
+    }catch(err){
+        handler(err, res, err.message) 
+    }
+})
+
 
 router.get('/doc/:id', async(req, res)=>{
     try{
