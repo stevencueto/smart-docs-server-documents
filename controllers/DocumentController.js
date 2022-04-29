@@ -3,6 +3,8 @@ const router = express.Router()
 const DocData = require('../models/DocData')
 const Docs = require('../models/Docs')
 const handler = require('../middleware/serverError')
+const mongoose = require('mongoose')
+const { findByIdAndUpdate } = require('../models/DocData')
 
 
 
@@ -20,10 +22,11 @@ router.get('/user', async(req, res)=>{
 
 router.get('/data/:id', async(req, res)=>{
     try{
-        const doc = await Docs.findById({data: req.params.id})
+        const doc = await Docs.findOne({data : req.params.id})
+        const dc = await Docs.findByIdAndUpdate(doc._id, doc)
         return res.send({
             success: true,
-            data: doc,
+            data: dc,
         })
     }catch(err){
         handler(err, res, err.message) 

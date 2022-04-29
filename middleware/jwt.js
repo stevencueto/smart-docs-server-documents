@@ -11,7 +11,6 @@ module.exports = (req, res, next) => {
             return handler(err?.message, res , err?.message)
         }else{
             req.user = decoded.user
-            console.log(decoded.user._id)
             next()
         }
     });
