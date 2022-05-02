@@ -18,7 +18,6 @@ router.delete('/', async(req, res)=>{
             data: ['Deleted All Items From DBS', find],
         })
     }catch(err){
-        console.log('axios')
         res.send({success: false, message: err.message}) 
     }
 })
